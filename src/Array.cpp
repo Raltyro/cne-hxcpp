@@ -380,7 +380,6 @@ String ArrayBase::joinArray(Array_obj<String> *inArray, String inSeparator)
    bool sepIsWide = inSeparator.isUTF16Encoded();
    if (isWChar || sepIsWide)
    {
-      printf("String::join %d\n", len);
       char16_t *buf = String::allocChar16Ptr(len);
       int pos = 0;
       bool separated = inSeparator.length>0;
