@@ -107,7 +107,7 @@ void ArrayBase::Realloc(int inSize) const
       else // Managed memory
       {
          mBase = (char *)hx::InternalRealloc(length*elemSize,mBase, bytes, true);
-         int o = bytes; // is this used?
+         // int o = bytes; // is this used?
          bytes = hx::ObjectSizeSafe(mBase);
       }
    }
