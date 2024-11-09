@@ -1678,10 +1678,16 @@ int String::compare(const ::String &inRHS) const
 
 bool String::__StartsWith(const String &inValue) const
 {
+   if(!__s)
+      return false;
+   if(!inValue.__s)
+      return false;
    int l = inValue.length;
 
    if (l > length)
       return false;
+   if (l == 0)
+      return true;
 
    bool s016 = isUTF16Encoded();
    bool s116 = inValue.isUTF16Encoded();
@@ -1699,10 +1705,16 @@ bool String::__StartsWith(const String &inValue) const
 
 bool String::__EndsWith(const String &inValue) const
 {
-  int l = inValue.length;
+   if(!__s)
+      return false;
+   if(!inValue.__s)
+      return false;
+   int l = inValue.length;
 
    if (l > length)
       return false;
+   if (l == 0)
+      return true;
 
    bool s016 = isUTF16Encoded();
    bool s116 = inValue.isUTF16Encoded();
