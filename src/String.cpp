@@ -1676,6 +1676,60 @@ int String::compare(const ::String &inRHS) const
 }
 #endif
 
+bool String::__StartsWith(const String &inValue) const
+{
+   if(!__s)
+      return false;
+   if(!inValue.__s)
+      return false;
+   int l = inValue.length;
+
+   if (l > length)
+      return false;
+   if (l == 0)
+      return true;
+
+   bool s016 = isUTF16Encoded();
+   bool s116 = inValue.isUTF16Encoded();
+   if (s016 && s116)
+   {
+      return memcmp(__w, inValue.__w, l * sizeof(char16_t)) == 0;
+   }
+   else if (s016 || s116)
+   {
+      return s016 ? StrMatch(__w, inValue.__s, l) :
+                    StrMatch(inValue.__w, __s, l);
+   }
+   return memcmp(__s, inValue.__s, l) == 0;
+}
+
+bool String::__EndsWith(const String &inValue) const
+{
+   if(!__s)
+      return false;
+   if(!inValue.__s)
+      return false;
+   int l = inValue.length;
+
+   if (l > length)
+      return false;
+   if (l == 0)
+      return true;
+
+   bool s016 = isUTF16Encoded();
+   bool s116 = inValue.isUTF16Encoded();
+   if (s016 && s116)
+   {
+      return memcmp(__w + (length - l), inValue.__w, l * sizeof(char16_t)) == 0;
+   }
+   else if (s016 || s116)
+   {
+      return s016 ? StrMatch(__w + (length - l), inValue.__s, l) :
+                  StrMatch(inValue.__w, __s + (length - l), l);
+   }
+   return memcmp(__s + (length - l), inValue.__s, l) == 0;
+}
+
 
 namespace hx
 {
@@ -2174,6 +2228,11 @@ hx::Val String::__Field(const String &inString, hx::PropertyAccess inCallProp)
    return null();
 }
 
+bool String::__GetStatic(const ::String &inName, Dynamic &outValue, ::hx::PropertyAccess inCallProp)
+{
+   if (HX_FIELD_EQ(inName,"fromCharCode")) { outValue = fromCharCode_dyn(); return true; }
+	return false;
+}
 
 static String sStringStatics[] = {
    HX_CSTRING("fromCharCode"),
@@ -2404,6 +2463,8 @@ void String::__boot()
    Static(__StringClass) = hx::_hx_RegisterClass(HX_CSTRING("String"),TCanCast<StringData>,sStringStatics, sStringFields,
            &CreateEmptyString, &CreateString, 0, 0, 0
     );
+   __StringClass->mGetStaticField = &String::__GetStatic;
+   __StringClass->mSetStaticField = &::hx::Class_obj::SetNoStaticField;
 }
 
 
