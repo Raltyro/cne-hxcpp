@@ -22,7 +22,7 @@
   <set name="PLATFORM_ARCH" value="arch-x86" />
   <set name="TOOLCHAIN" value="x86-${TOOLCHAIN_VERSION}" />
   <set name="EXEPREFIX" value="i686-linux-android" />
-  <set name="PLATFORM" value="android-14" unless="PLATFORM" />
+  <set name="PLATFORM" value="android-21" unless="PLATFORM" />
 </section>
 
 <section unless="HXCPP_X86">
@@ -31,7 +31,7 @@
   <set name="PLATFORM_ARCH" value="arch-arm" />
   <set name="TOOLCHAIN" value="arm-linux-androideabi-${TOOLCHAIN_VERSION}" />
   <set name="EXEPREFIX" value="arm-linux-androideabi" />
-  <set name="PLATFORM" value="android-5" unless="PLATFORM" />
+  <set name="PLATFORM" value="android-21" unless="PLATFORM" />
 </section>
 
 <section if="HXCPP_ARM64">
@@ -40,7 +40,7 @@
   <set name="PLATFORM_ARCH" value="arch-arm64" />
   <set name="TOOLCHAIN" value="aarch64-linux-android-${TOOLCHAIN_VERSION}" />
   <set name="EXEPREFIX" value="aarch64-linux-android" />
-  <set name="PLATFORM" value="android-19" unless="PLATFORM" />
+  <set name="PLATFORM" value="android-21" unless="PLATFORM" />
 </section>
 
 <section if="HXCPP_X86_64">
