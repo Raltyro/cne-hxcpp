@@ -1681,7 +1681,7 @@ bool String::__StartsWith(const String &inValue) const
    if(!__s)
       return false;
    if(!inValue.__s)
-      return false;
+      return true; // should return false, but original code returns true
    int l = inValue.length;
 
    if (l > length)
@@ -1708,7 +1708,7 @@ bool String::__EndsWith(const String &inValue) const
    if(!__s)
       return false;
    if(!inValue.__s)
-      return false;
+      return true; // should return false, but original code returns true
    int l = inValue.length;
 
    if (l > length)
