@@ -27,13 +27,11 @@ class Progress
    {
       var progress = getProgress();
 
-      var hashes = "";
+      var spaces = "";
 
-      while ((hashes.length + progress.length) < 7)
-         hashes += "#";
+      while ((spaces.length + progress.length) < 6)
+         spaces += " ";
 
-      hashes = "\x1b[90;1m" + hashes + "\x1b[0m";
-
-      return "\x1b[1m[\x1b[0m" + hashes + "\x1b[33;1m" + progress + "\x1b[0m\x1b[1m]\x1b[0m";
+      return "\x1b[1m[\x1b[0m" + spaces + "\x1b[33;1m" + progress + "\x1b[0m\x1b[1m]\x1b[0m";
    }
 }
