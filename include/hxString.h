@@ -267,6 +267,9 @@ public:
    }
    #endif
 
+   bool __StartsWith(const String &inValue) const;
+   bool __EndsWith(const String &inValue) const;
+
 
    ::String &operator+=(const ::String &inRHS);
    ::String operator+(const ::String &inRHS) const;
@@ -353,6 +356,9 @@ public:
 
    // This is used by the string-wrapped-as-dynamic class
    hx::Val __Field(const ::String &inString, hx::PropertyAccess inCallProp);
+
+   // Allows for reflection to be able to get the static functions
+   static bool __GetStatic(const String&, Dynamic&, hx::PropertyAccess);
 
    // The actual implementation.
    // Note that "__s" is const - if you want to change it, you should create a new string.
