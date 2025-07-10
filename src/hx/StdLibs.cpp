@@ -291,7 +291,7 @@ void __hxcpp_stdlibs_boot()
    //  It does not cause fread to return immediately - as perhaps desired.
    //  But it does cause some new-line characters to be lost.
    //setbuf(stdin, 0);
-   setvbuf(stdout, NULL, _IOLBF, BUFSIZ);
+   setbuf(stdout, 0);
    setbuf(stderr, 0);
 }
 
